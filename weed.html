@@ -177,11 +177,33 @@
       </div>
     </section>
 
+    <!-- CTA Section -->
+    <section class="text-center mb-16">
+      <h2 class="text-3xl font-bold text-neonPink mb-4">
+        Ready to get lifted?
+      </h2>
+      <p class="text-gray-400 mb-6">
+        Discreet delivery. Questionable life choices.
+      </p>
+
+      <div class="relative inline-block">
+        <button id="add-to-cart-btn" class="bg-neonGreen text-black font-bold py-3 px-6 rounded-full hover:opacity-90 focus:ring-2 focus:ring-neonGreen focus:outline-none">
+          <i data-feather="shopping-cart" class="inline mr-2"></i>
+          Add to Cart
+        </button>
+
+        <!-- Main CTA popup -->
+        <span id="cart-popup" class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full bg-black text-white text-sm font-bold px-3 py-1 rounded opacity-0 transition-opacity duration-300">
+          Added to Cart
+        </span>
+      </div>
+    </section>
+
   </main>
 
   <custom-footer></custom-footer>
 
-  <!-- Added to Cart Popup Element -->
+  <!-- Popup for product buttons -->
   <span id="product-cart-popup" class="fixed top-5 left-1/2 -translate-x-1/2 bg-black text-white text-sm font-bold px-3 py-1 rounded opacity-0 transition-opacity duration-300 z-50">
     Added to Cart
   </span>
@@ -192,29 +214,26 @@
   <script>
     feather.replace();
 
-    // Main CTA Add to Cart popup
+    // Main CTA Add to Cart
     const mainBtn = document.getElementById('add-to-cart-btn');
     const mainPopup = document.getElementById('cart-popup');
-
     mainBtn.addEventListener('click', () => {
       mainPopup.classList.remove('opacity-0');
       mainPopup.classList.add('opacity-100');
-
       setTimeout(() => {
         mainPopup.classList.remove('opacity-100');
         mainPopup.classList.add('opacity-0');
       }, 1000);
     });
 
-    // Product menu buttons Add to Cart popup
+    // Product menu buttons Add to Cart
     const productBtns = document.querySelectorAll('.add-product-btn');
     const productPopup = document.getElementById('product-cart-popup');
-
     productBtns.forEach(btn => {
       btn.addEventListener('click', () => {
+        productPopup.textContent = `${btn.parentElement.querySelector('h4').textContent} Added!`;
         productPopup.classList.remove('opacity-0');
         productPopup.classList.add('opacity-100');
-
         setTimeout(() => {
           productPopup.classList.remove('opacity-100');
           productPopup.classList.add('opacity-0');
