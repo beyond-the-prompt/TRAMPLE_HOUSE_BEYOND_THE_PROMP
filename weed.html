@@ -44,7 +44,7 @@
 
   <main class="container mx-auto px-4 py-10">
 
-    <!-- Hero Cards (Dynamic) -->
+    <!-- Hero Cards -->
     <section class="text-center mb-16">
       <h1 class="text-5xl font-bold text-primary mb-4">Devil's Lettuce</h1>
       <p class="text-xl text-secondary mb-8">
@@ -54,81 +54,14 @@
       <div id="hero-cards" class="grid md:grid-cols-3 gap-6"></div>
     </section>
 
-    <!-- Menu -->
+    <!-- Menu Section -->
     <section class="mb-16">
       <h2 class="text-4xl font-bold text-center text-neonGreen mb-4">
         Cannabis Menu
       </h2>
-      <p class="text-center text-gray-400 mb-10">
-        From CBD to WTF
-      </p>
+      <p class="text-center text-gray-400 mb-10">From CBD to WTF</p>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <!-- Flower -->
-        <div class="bg-gray-900 rounded-xl p-6 border border-neonGreen">
-          <h3 class="text-2xl font-bold text-neonGreen mb-4">Flower</h3>
-          <div class="space-y-4">
-            <div class="bg-gray-800 p-4 rounded-lg flex justify-between hover:bg-gray-700 transition">
-              <div>
-                <h4 class="font-bold">OG Kush</h4>
-                <p class="text-sm text-gray-400">Indica dominant</p>
-              </div>
-              <span class="text-neonGreen font-bold">$60</span>
-            </div>
-            <div class="bg-gray-800 p-4 rounded-lg flex justify-between hover:bg-gray-700 transition">
-              <div>
-                <h4 class="font-bold">Sour Diesel</h4>
-                <p class="text-sm text-gray-400">Sativa dominant</p>
-              </div>
-              <span class="text-neonGreen font-bold">$65</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Concentrates -->
-        <div class="bg-gray-900 rounded-xl p-6 border border-neonGreen">
-          <h3 class="text-2xl font-bold text-neonGreen mb-4">Concentrates</h3>
-          <div class="space-y-4">
-            <div class="bg-gray-800 p-4 rounded-lg flex justify-between hover:bg-gray-700 transition">
-              <div>
-                <h4 class="font-bold">Live Resin</h4>
-                <p class="text-sm text-gray-400">Full spectrum</p>
-              </div>
-              <span class="text-neonGreen font-bold">$80</span>
-            </div>
-            <div class="bg-gray-800 p-4 rounded-lg flex justify-between hover:bg-gray-700 transition">
-              <div>
-                <h4 class="font-bold">Rosin</h4>
-                <p class="text-sm text-gray-400">Solventless</p>
-              </div>
-              <span class="text-neonGreen font-bold">$90</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Edibles -->
-        <div class="bg-gray-900 rounded-xl p-6 border border-neonGreen">
-          <h3 class="text-2xl font-bold text-neonGreen mb-4">Edibles</h3>
-          <div class="space-y-4">
-            <div class="bg-gray-800 p-4 rounded-lg flex justify-between hover:bg-gray-700 transition">
-              <div>
-                <h4 class="font-bold">Gummies</h4>
-                <p class="text-sm text-gray-400">100mg THC</p>
-              </div>
-              <span class="text-neonGreen font-bold">$25</span>
-            </div>
-            <div class="bg-gray-800 p-4 rounded-lg flex justify-between hover:bg-gray-700 transition">
-              <div>
-                <h4 class="font-bold">Chocolate Bar</h4>
-                <p class="text-sm text-gray-400">200mg THC</p>
-              </div>
-              <span class="text-neonGreen font-bold">$35</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
+      <div id="menu-cards" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </section>
 
     <!-- Special Offers -->
@@ -154,12 +87,8 @@
 
     <!-- CTA with Added to Cart popup -->
     <section class="text-center">
-      <h2 class="text-3xl font-bold text-neonPink mb-4">
-        Ready to get lifted?
-      </h2>
-      <p class="text-gray-400 mb-6">
-        Discreet delivery. Questionable life choices.
-      </p>
+      <h2 class="text-3xl font-bold text-neonPink mb-4">Ready to get lifted?</h2>
+      <p class="text-gray-400 mb-6">Discreet delivery. Questionable life choices.</p>
 
       <div class="relative inline-block">
         <button id="add-to-cart-btn" class="bg-neonGreen text-black font-bold py-3 px-6 rounded-full hover:opacity-90 focus:ring-2 focus:ring-neonGreen focus:outline-none">
@@ -184,13 +113,12 @@
   <script>
     feather.replace();
 
-    // Hero Cards Data
+    // Hero Cards
     const heroCards = [
       { title: "Top Shelf Flower", desc: "Sticky, loud, unapologetic.", img: "media/flower.jpg" },
       { title: "Concentrates", desc: "For people with goals.", img: "media/concentrates.jpg" },
       { title: "Edibles", desc: "Delayed decisions guaranteed.", img: "media/edibles.jpg" }
     ];
-
     const heroContainer = document.getElementById('hero-cards');
     heroContainer.innerHTML = heroCards.map(card => `
       <div class="bg-gray-900 rounded-xl overflow-hidden border border-primary hover:shadow-lg transition">
@@ -202,10 +130,41 @@
       </div>
     `).join('');
 
-    // Added to Cart popup logic
+    // Menu Items
+    const menuItems = [
+      { category: "Flower", name: "OG Kush", desc: "Indica dominant", price: "$60" },
+      { category: "Flower", name: "Sour Diesel", desc: "Sativa dominant", price: "$65" },
+      { category: "Concentrates", name: "Live Resin", desc: "Full spectrum", price: "$80" },
+      { category: "Concentrates", name: "Rosin", desc: "Solventless", price: "$90" },
+      { category: "Edibles", name: "Gummies", desc: "100mg THC", price: "$25" },
+      { category: "Edibles", name: "Chocolate Bar", desc: "200mg THC", price: "$35" }
+    ];
+
+    const menuContainer = document.getElementById('menu-cards');
+    const categories = ["Flower", "Concentrates", "Edibles"];
+    categories.forEach(cat => {
+      const catItems = menuItems.filter(i => i.category === cat);
+      menuContainer.innerHTML += `
+        <div class="bg-gray-900 rounded-xl p-6 border border-neonGreen">
+          <h3 class="text-2xl font-bold text-neonGreen mb-4">${cat}</h3>
+          <div class="space-y-4">
+            ${catItems.map(item => `
+              <div class="bg-gray-800 p-4 rounded-lg flex justify-between hover:bg-gray-700 transition">
+                <div>
+                  <h4 class="font-bold">${item.name}</h4>
+                  <p class="text-sm text-gray-400">${item.desc}</p>
+                </div>
+                <span class="text-neonGreen font-bold">${item.price}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    });
+
+    // Added to Cart popup
     const btn = document.getElementById('add-to-cart-btn');
     const popup = document.getElementById('cart-popup');
-
     btn.addEventListener('click', () => {
       popup.classList.remove('opacity-0');
       popup.classList.add('opacity-100');
