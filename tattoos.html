@@ -17,6 +17,8 @@
                         primary: '#6b21a8',
                         secondary: '#c026d3',
                         dark: '#111827',
+                        neonGreen: '#22c55e',
+                        neonPink: '#ec4899'
                     }
                 }
             }
@@ -26,6 +28,7 @@
 <body class="bg-dark text-white min-h-screen relative">
     <background-video></background-video>
     <custom-navbar></custom-navbar>
+
     <main class="container mx-auto px-4 py-8">
         <!-- Hero Section -->
         <section class="mb-12">
@@ -72,7 +75,7 @@
                     <a href="tel:+15551234567" class="bg-secondary hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-full flex items-center justify-center">
                         <i data-feather="phone" class="mr-2"></i> Call to Book
                     </a>
-                    <button id="booking-modal-btn" class="bg-primary hover:bg-purple-800 text-white font-bold py-3 px-6 rounded-full flex items-center justify-center">
+                    <button id="booking-modal-btn" class="bg-primary hover:bg-purple-800 text-white font-bold py-3 px-6 rounded-full flex items-center justify-center hero-book-btn">
                         <i data-feather="calendar" class="mr-2"></i> Book Online
                     </button>
                 </div>
@@ -93,7 +96,7 @@
 
     <custom-footer></custom-footer>
 
-    <!-- Booking Modal (hidden by default) -->
+    <!-- Booking Modal -->
     <div id="booking-modal" class="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
         <div class="bg-gray-800 rounded-2xl max-w-md w-full p-6">
             <div class="flex justify-between items-center mb-6">
@@ -124,6 +127,10 @@
         </div>
     </div>
 
+    <!-- Popups -->
+    <span id="cart-popup" class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full bg-black text-white text-sm font-bold px-3 py-1 rounded opacity-0 transition-opacity duration-300 z-50">Added to Cart</span>
+    <span id="hero-popup" class="fixed top-5 left-1/2 -translate-x-1/2 bg-black text-white px-4 py-2 rounded opacity-0 transition-opacity duration-300 z-50">Booking added!</span>
+
     <script src="components/background-video.js"></script>
     <script src="components/navbar.js"></script>
     <script src="components/footer.js"></script>
@@ -133,86 +140,14 @@
 
         // Tattoo data
         const tattoos = [
-            {
-                id: 1,
-                title: "Succubus Back Piece",
-                image: "https://huggingface.co/spaces/buddybudboi/Whoredashers/resolve/main/images/Gemini_Generated_Image_ajuwe5ajuwe5ajuw.png",
-                style: "realism",
-                price: "500+",
-                artist: "Viper",
-                time: "8-12 hours",
-                description: "Full back demon goddess that'll make your pastor cry."
-            },
-            {
-                id: 2,
-                title: "Neo Dragon Sleeve",
-                image: "https://huggingface.co/spaces/buddybudboi/Whoredashers/resolve/main/images/Gemini_Generated_Image_rkx0vurkx0vurkx0.png",
-                style: "neo",
-                price: "1200+",
-                artist: "Jin",
-                time: "15-20 hours",
-                description: "Because basic bitches get tribal."
-            },
-            {
-                id: 3,
-                title: "Skull & Roses Chest",
-                image: "https://huggingface.co/spaces/buddybudboi/Whoredashers/resolve/main/images/Gemini_Generated_Image_wclsk0wclsk0wcls.png",
-                style: "traditional",
-                price: "800+",
-                artist: "Bones",
-                time: "10-14 hours",
-                description: "For when you want to look tough but still cry during rom‑coms."
-            },
-            {
-                id: 4,
-                title: "Japanese Koi Half Sleeve",
-                image: "https://huggingface.co/spaces/buddybudboi/Whoredashers/resolve/main/images/Gemini_Generated_Image_yyiog7yyiog7yyio.png",
-                style: "japanese",
-                price: "900+",
-                artist: "Hiro",
-                time: "12-16 hours",
-                description: "Traditional Japanese koi that symbolizes perseverance (or just looks cool)."
-            },
-            {
-                id: 5,
-                title: "Blackwork Mandala",
-                image: "https://huggingface.co/spaces/buddybudboi/Whoredashers/resolve/main/images/Gemini_Generated_Image_o7zmmio7zmmio7zm.png",
-                style: "blackwork",
-                price: "400+",
-                artist: "Luna",
-                time: "6-8 hours",
-                description: "Geometric patterns for when you're deep but not that deep."
-            },
-            {
-                id: 6,
-                title: "Realistic Portrait",
-                image: "https://huggingface.co/spaces/buddybudboi/Whoredashers/resolve/main/images/Gemini_Generated_Image_9disqc9disqc9dis.png",
-                style: "portrait",
-                price: "1500+",
-                artist: "Chloe",
-                time: "20+ hours",
-                description: "We'll tattoo your dead pet (or favorite porn star) looking alive."
-            },
-            {
-                id: 7,
-                title: "Traditional Panther",
-                image: "https://huggingface.co/spaces/buddybudboi/Whoredashers/resolve/main/images/Gemini_Generated_Image_7jbjj47jbjj47jbj.png",
-                style: "traditional",
-                price: "300+",
-                artist: "Rex",
-                time: "4-6 hours",
-                description: "Old‑school tough guy shit. Works on any body part."
-            },
-            {
-                id: 8,
-                title: "Cyberpunk Biomech",
-                image: "https://huggingface.co/spaces/buddybudboi/Whoredashers/resolve/main/images/a_neon-lit_digital_painting_of (1).jpeg",
-                style: "neo",
-                price: "1000+",
-                artist: "Zero",
-                time: "15-18 hours",
-                description: "Robots and flesh merging because you're part machine anyway."
-            }
+            { id:1,title:"Succubus Back Piece",image:"https://huggingface.co/spaces/buddybudboi/Whoredashers/resolve/main/images/Gemini_Generated_Image_ajuwe5ajuwe5ajuw.png",style:"realism",price:"500+",artist:"Viper",time:"8-12 hours",description:"Full back demon goddess that'll make your pastor cry." },
+            { id:2,title:"Neo Dragon Sleeve",image:"https://huggingface.co/spaces/buddybudboi/Whoredashers/resolve/main/images/Gemini_Generated_Image_rkx0vurkx0vurkx0.png",style:"neo",price:"1200+",artist:"Jin",time:"15-20 hours",description:"Because basic bitches get tribal." },
+            { id:3,title:"Skull & Roses Chest",image:"https://huggingface.co/spaces/buddybudboi/Whoredashers/resolve/main/images/Gemini_Generated_Image_wclsk0wclsk0wcls.png",style:"traditional",price:"800+",artist:"Bones",time:"10-14 hours",description:"For when you want to look tough but still cry during rom‑coms." },
+            { id:4,title:"Japanese Koi Half Sleeve",image:"https://huggingface.co/spaces/buddybudboi/Whoredashers/resolve/main/images/Gemini_Generated_Image_yyiog7yyiog7yyio.png",style:"japanese",price:"900+",artist:"Hiro",time:"12-16 hours",description:"Traditional Japanese koi that symbolizes perseverance (or just looks cool)." },
+            { id:5,title:"Blackwork Mandala",image:"https://huggingface.co/spaces/buddybudboi/Whoredashers/resolve/main/images/Gemini_Generated_Image_o7zmmio7zmmio7zm.png",style:"blackwork",price:"400+",artist:"Luna",time:"6-8 hours",description:"Geometric patterns for when you're deep but not that deep." },
+            { id:6,title:"Realistic Portrait",image:"https://huggingface.co/spaces/buddybudboi/Whoredashers/resolve/main/images/Gemini_Generated_Image_9disqc9disqc9dis.png",style:"portrait",price:"1500+",artist:"Chloe",time:"20+ hours",description:"We'll tattoo your dead pet (or favorite porn star) looking alive." },
+            { id:7,title:"Traditional Panther",image:"https://huggingface.co/spaces/buddybudboi/Whoredashers/resolve/main/images/Gemini_Generated_Image_7jbjj47jbjj47jbj.png",style:"traditional",price:"300+",artist:"Rex",time:"4-6 hours",description:"Old‑school tough guy shit. Works on any body part." },
+            { id:8,title:"Cyberpunk Biomech",image:"https://huggingface.co/spaces/buddybudboi/Whoredashers/resolve/main/images/a_neon-lit_digital_painting_of (1).jpeg",style:"neo",price:"1000+",artist:"Zero",time:"15-18 hours",description:"Robots and flesh merging because you're part machine anyway." }
         ];
 
         function renderTattoos(filter = 'all') {
@@ -247,7 +182,6 @@
             
             feather.replace();
             
-            // Add event listeners to book buttons
             document.querySelectorAll('.book-tattoo-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const modal = document.getElementById('booking-modal');
@@ -255,6 +189,15 @@
                     const form = document.getElementById('booking-form');
                     const titleInput = form.querySelector('textarea');
                     titleInput.value = `I'm interested in: ${this.dataset.title} ($${this.dataset.price})`;
+
+                    // Popup
+                    const cartPopup = document.getElementById('cart-popup');
+                    cartPopup.classList.remove('opacity-0');
+                    cartPopup.classList.add('opacity-100');
+                    setTimeout(() => {
+                        cartPopup.classList.remove('opacity-100');
+                        cartPopup.classList.add('opacity-0');
+                    }, 1000);
                 });
             });
         }
@@ -275,7 +218,6 @@
             
             // Load more button
             document.getElementById('load-more-tattoos').addEventListener('click', function() {
-                // In a real app, you'd fetch more data
                 alert('More tattoo designs loaded! (This is a demo)');
                 this.textContent = 'No More Designs';
                 this.disabled = true;
@@ -287,7 +229,17 @@
             const openBtn = document.getElementById('booking-modal-btn');
             const closeBtn = document.getElementById('close-modal');
             
-            openBtn.addEventListener('click', () => modal.classList.remove('hidden'));
+            openBtn.addEventListener('click', () => {
+                modal.classList.remove('hidden');
+                // Hero popup
+                const heroPopup = document.getElementById('hero-popup');
+                heroPopup.classList.remove('opacity-0');
+                heroPopup.classList.add('opacity-100');
+                setTimeout(() => {
+                    heroPopup.classList.remove('opacity-100');
+                    heroPopup.classList.add('opacity-0');
+                }, 1000);
+            });
             closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
             
             // Close modal on outside click
