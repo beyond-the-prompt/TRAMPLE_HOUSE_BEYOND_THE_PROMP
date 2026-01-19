@@ -1,14 +1,28 @@
 {
-  "background_color": "#ffffff",
-  "dir": "ltr",
-  "display": "fullscreen",
-  "name": "beyond-the-prompt.github",
-  "orientation": "any",
-  "scope": "/",
-  "short_name": "beyond-the-prompt.github",
-  "start_url": "/login.html",
-  "theme_color": "#ffffff",
-  "categories": [
-    "lifestyle"
+  "name": "TRAMPLE HOUSE",
+  "short_name": "TRAMPLE",
+  "start_url": "login.html",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "android/android-launchericon-512-512.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "android/android-launchericon-192-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "android/android-launchericon-144-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "android/android-launchericon-96-96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
   ]
 }
